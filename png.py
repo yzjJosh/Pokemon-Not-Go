@@ -187,7 +187,7 @@ def move(move_step):
     longitude = cur_location.longitude + move_step * math.cos(angle*math.pi/180)
     latitude = cur_location.latitude + move_step * math.sin(angle*math.pi/180) 
     location = Location(latitude, longitude)
-    print "Set latitude to", location
+    print "Set location to", location
     print "Current angle is", angle
 
 def turn(degree):
