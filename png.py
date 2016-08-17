@@ -159,8 +159,10 @@ KEY_UP = 1
 KEY_DOWN = 2
 KEY_LEFT = 3
 KEY_RIGHT = 4
-KEY_EXIT = 5
-KEY_OTHER = 6
+KEY_SMALLER = 5
+KEY_LARGER = 6
+KEY_EXIT = 7
+KEY_OTHER = 8
 
 def read_key_board():
     key = ord(getch())
@@ -179,6 +181,18 @@ def read_key_board():
             res = key_code_map[key]
             if res != None:
                 return res
+    else:
+        key_code_map = {
+            119: KEY_UP,
+            97: KEY_LEFT,
+            115: KEY_DOWN,
+            100: KEY_RIGHT,
+            44: KEY_SMALLER,
+            46: KEY_LARGER
+        }
+        res = key_code_map[key]
+        if res != None:
+            return res
     return KEY_OTHER
 
 def move(move_step):
@@ -209,6 +223,12 @@ def on_key_left():
 def on_key_right(): 
     turn(-ROTATE_STEP)
 
+def on_key_smaller():
+    turn(90)
+
+def on_key_larger():
+    turn(-90)
+
 def on_key_exit():
     print "Pokemon Not Go is terminating..."
     terminate()
@@ -221,6 +241,8 @@ key_handler_map = {
     KEY_DOWN: on_key_down,
     KEY_LEFT: on_key_left,
     KEY_RIGHT: on_key_right,
+    KEY_SMALLER: on_key_smaller,
+    KEY_LARGER: on_key_larger,
     KEY_EXIT: on_key_exit,
     KEY_OTHER: on_key_other
 }
